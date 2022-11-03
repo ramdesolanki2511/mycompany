@@ -1,0 +1,1 @@
+[2022-11-02T12:16:19.458535+00:00] main.WARNING: Failed to retrieve the release notification content. {"exception":"[object] (Exception(code: 0): Operation timed out after 5000 milliseconds with 0 out of 0 bytes received at /var/www/html/magento/vendor/magento/framework/HTTP/Client/Curl.php:427)"} []

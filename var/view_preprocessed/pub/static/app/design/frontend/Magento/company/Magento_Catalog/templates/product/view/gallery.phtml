@@ -1,0 +1,13 @@
+<?php /** * Copyright © Magento, Inc. All rights reserved. * See COPYING.txt for license details. */ /** * Product media data template * * @var $block \Magento\Catalog\Block\Product\View\Gallery */ $product = $this->getProduct(); $images = json_decode($block->getGalleryImagesJson(),true); ?> <?php /* ?> <?php $images = $block->getGalleryImages()->getItems(); $mainImage = current(array_filter($images, function ($img) use ($block) { return $block->isMainImage($img); })); if (!empty($images) && empty($mainImage)) { $mainImage = $block->getGalleryImages()->getFirstItem(); } $helper = $block->getData('imageHelper'); $mainImageData = $mainImage ? $mainImage->getData('medium_image_url') : $helper->getDefaultPlaceholderUrl('image'); ?> <?php */ ?> <div class="gallery-placeholder _block-content-loading slick-slider" data-gallery-role="gallery-placeholder"><?php foreach ($images as $i => $image): ?> <div class="item"><?php $altText = $image['caption'] ? $image['caption'] : $product->getName(); ?> <img src="<?php echo $image['img']?>" alt="<?php echo $altText ?>"></div><?php endforeach ?></div><script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder-new]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= /* @noEscape */ $block->getMagnifier() ?>,
+                "data": <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
+                "options": <?= /* @noEscape */ $block->getGalleryOptions()->getOptionsJson() ?>,
+                "fullscreen": <?= /* @noEscape */ $block->getGalleryOptions()->getFSOptionsJson() ?>,
+                 "breakpoints": <?= /* @noEscape */ $block->getBreakpoints() ?>
+            }
+        }
+    }</script>
