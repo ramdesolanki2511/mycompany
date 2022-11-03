@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs" remove="true"/>
+        <referenceBlock name="product.attributes" remove="true" />
+        <referenceBlock name="product.info.stock.sku" remove="true" />
+        <referenceContainer name="content">
+            <container name="product.info.left" htmlTag="div" htmlClass="product-info-left" before="-" />
+        </referenceContainer>
+        <referenceBlock name="product.info.details">                
+            <referenceBlock name="product.info.description">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Details</argument>
+                    <argument name="sort_order" xsi:type="string">1</argument>
+                </arguments>
+            </referenceBlock>
+            <block class="Magento\Catalog\Block\Product\View" name="product.delivery.info" template="Magento_Catalog::product/view/delivery_content.phtml" group="detailed_info" >
+               <arguments>
+                   <argument translate="true" name="title" xsi:type="string">Delivery</argument>
+                   <argument name="sort_order" xsi:type="string">2</argument>
+               </arguments>
+           </block>
+            <block class="Magento\Catalog\Block\Product\View" name="product.fit.info" template="Magento_Catalog::product/view/fit_content.phtml" group="detailed_info" >
+               <arguments>
+                   <argument translate="true" name="title" xsi:type="string">Fit</argument>
+                   <argument name="sort_order" xsi:type="string">3</argument>
+               </arguments>
+           </block>
+            <block class="Magento\Catalog\Block\Product\View" name="product.share.info" template="Magento_Catalog::product/view/share_content.phtml" group="detailed_info" >
+               <arguments>
+                   <argument translate="true" name="title" xsi:type="string">Share</argument>
+                   <argument name="sort_order" xsi:type="string">4</argument>
+               </arguments>
+           </block>
+        </referenceBlock>
+        <move element="product.info.details" destination="product.info.left" after="-"  />
+        <move element="product.info.overview" destination="product.info.main" before="product.info.price" />
+        <move element="product.info.social" destination="product.info.media" before="-" />
+    </body>
+</page>
